@@ -1,0 +1,249 @@
+/* Global Styles */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgba(74,77,152,255); /* Changed from red to blue */
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* Header */
+.main-header {
+    background-color: rgba(204,215,227,255);
+    padding: 15px 20px;
+    position: fixed;
+    width: 100%;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    top: 0;
+    left: 0;
+}
+
+.main-header img {
+    width: clamp(40px, 8vw, 60px);
+    height: clamp(40px, 8vw, 60px);
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+.header-info {
+    color: rgba(41,98,222,255);
+    font-size: clamp(1.2rem, 4vw, 2rem);
+    font-weight: 600;
+    flex: 1;
+}
+
+/* Jumbotron */
+.jumbotron {
+    text-align: center;
+    padding: clamp(20px, 5vw, 40px) 20px;
+    margin: clamp(100px, 15vw, 120px) auto 20px;
+    color: rgba(208,241,251,255);
+}
+
+.jumbotron h2 {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.jumbotron h1 {
+    font-size: clamp(2rem, 6vw, 3rem);
+    margin-top: 0;
+    font-weight: 700;
+}
+
+/* Container */
+.container {
+    background-color: rgba(204,215,227,255);
+    padding: clamp(20px, 4vw, 30px);
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: min(1000px, 95vw);
+    width: 100%;
+}
+
+/* Tutorial and Upload Section */
+.tutorial, .iya, .hasil {
+    text-align: left;
+    margin-bottom: 30px;
+}
+
+.tutorial h2, .iya h2, .hasil h2 {
+    color: rgba(74,77,152,255); /* Changed from red to blue */
+    font-size: clamp(1.3rem, 3.5vw, 2rem);
+    text-align: left;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.hasil h3 {
+    color: rgba(74,77,152,255); /* Changed from red to blue */
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    text-align: left;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+/* Drop Area */
+#drop-area, #img-view {
+    max-width: 100%;
+    margin: 20px auto;
+    text-align: center;
+    padding: 20px;
+}
+
+#img-view img {
+    max-width: min(80px, 15vw);
+    height: auto;
+    margin: 10px;
+}
+
+/* Submit Button */
+.button {
+    background-color: rgba(74,77,152,255); /* Changed from red to blue */
+    color: white;
+    padding: clamp(10px, 2vw, 15px) clamp(20px, 4vw, 30px);
+    text-align: center;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    display: block;
+    margin: 20px auto;
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+    font-weight: 500;
+    transition: all 0.3s ease;
+    min-width: 120px;
+}
+
+.button:hover {
+    background-color: #3949ab; /* Changed from red to blue hover */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.button:active {
+    transform: translateY(0);
+}
+
+/* Error and Success Messages - KEPT RED FOR WARNING PURPOSES */
+.error-message {
+    color: #d32f2f; /* KEPT RED - for error visibility */
+    font-weight: bold;
+    margin: 10px 0;
+    padding: 10px;
+    background-color: rgba(211, 47, 47, 0.1); /* KEPT RED - for error visibility */
+    border-radius: 5px;
+    border-left: 4px solid #d32f2f; /* KEPT RED - for error visibility */
+}
+
+.uploaded-message {
+    color: #2e7d32;
+    font-weight: bold;
+    margin: 10px 0;
+    padding: 10px;
+    background-color: rgba(46, 125, 50, 0.1);
+    border-radius: 5px;
+    border-left: 4px solid #2e7d32;
+}
+
+/* Responsive Breakpoints */
+
+/* Tablet Portrait */
+@media (max-width: 768px) {
+    .main-header {
+        padding: 10px 15px;
+        min-height: 70px;
+    }
+    
+    .container {
+        margin: 15px 10px;
+        border-radius: 15px;
+    }
+    
+    .tutorial, .iya, .hasil {
+        margin-bottom: 20px;
+    }
+    
+    #drop-area, #img-view {
+        padding: 15px;
+    }
+}
+
+/* Mobile Landscape */
+@media (max-width: 600px) {
+    .main-header {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px;
+        min-height: auto;
+    }
+    
+    .main-header img {
+        margin-bottom: 10px;
+        margin-right: 0;
+    }
+    
+    .jumbotron {
+        margin-top: 140px;
+    }
+    
+    .container {
+        margin: 10px 5px;
+        border-radius: 10px;
+    }
+}
+
+/* Mobile Portrait */
+@media (max-width: 480px) {
+    body {
+        font-size: 14px;
+    }
+    
+    .container {
+        padding: 15px;
+    }
+    
+    .tutorial, .iya, .hasil {
+        margin-bottom: 15px;
+        text-align: center;
+    }
+    
+    .tutorial h2, .iya h2, .hasil h2, .hasil h3 {
+        text-align: center;
+    }
+    
+    #drop-area, #img-view {
+        padding: 10px;
+    }
+    
+    .button {
+        width: 100%;
+        max-width: 250px;
+    }
+}
+
+/* Very Small Screens */
+@media (max-width: 320px) {
+    .main-header {
+        padding: 10px;
+    }
+    
+    .container {
+        margin: 5px;
+        padding: 10px;
+    }
+    
+    .jumbotron {
+        padding: 15px 10px;
+    }
+}

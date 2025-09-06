@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/f90068558c.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <title>Diadet.AI</title>
+</head>
+<body> 
+    <header>
+        <div class="coba">
+            <div class="main-header">
+                <img src="{{ url_for('static', filename='images/logo.png') }}">
+                <h1 class="header-info">Diadet.AI</h1>
+            </div>
+        </div>
+    </header>
+
+    <div class="jumbotron">
+        <h2>Welcome to</h2>
+        <div class="box">
+            <h1>Diadet.AI</h1>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="tutorial">
+            <h2>Steps</h2>
+            <ol>
+                <li>Take a photo of your tongue</li>
+                <li>Upload the tongue image below</li>
+                <li>Press the "Detect" button</li>
+                <li>Wait for AI to detect</li>
+                <li>Results will appear below the tongue image</li>
+            </ol>
+        </div>
+
+        <div class="iya">
+            <h2>Detect Your Tongue</h2>
+            <br><br><br>
+            <form action="/" method="POST" enctype="multipart/form-data">
+                <label for="input-file" id="drop-area">
+                    <input type="file" name="imagefile" accept="image/*" id="input-file" hidden>
+                    <div id="img-view">
+                        <img src="{{ url_for('static', filename='images/upload.png') }}">
+                        <p>Click, tap, or drag and drop image <br> to upload!</p>
+                    </div>
+                </label>
+                <div id="upload-feedback" style="margin-top: 10px; color: green; font-weight: bold;"></div>
+                <img id="preview-img" src="#" alt="Preview" style="max-width: 200px; display: none; margin-top: 10px;"/>
+                <input type="submit" value="Detect" class="button">
+            </form>
+        </div>
+
+        <div class="hasil">
+            <h3>Results</h3>
+            <br><br>
+            <div>
+                <div class="hasil2">
+                    {% if prediction %}
+                        <h2>Prognosis: {{ prediction }}!</h2>
+                        <h2>With confidence level: {{ percent }}%</h2>
+                    {% endif %}
+                    
+                    {% if image_file %}
+                        <div class="uploaded-message" style="background-color: #d4edda; color: #155724; padding: 10px; border-radius: 5px; border: 1px solid #c3e6cb; margin-bottom: 10px;">
+                            ✅ Image uploaded successfully!
+                        </div>
+                        <div class="uploaded-message">This is your photo!</div>
+                        <img src="{{ url_for('display_image', filename=image_file) }}" alt="Uploaded Image" style="max-width: 500px; border: 1px solid #ccc; padding: 5px; background: white;">
+                    {% endif %}
+
+                    {% if error %}
+                        <div class="error-message" style="background-color: #f8d7da; color: #721c24; padding: 10px; border-radius: 5px; border: 1px solid #f5c6cb;">
+                            ❌ {{ error }}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer></footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+    <script>
+    // Show message and preview when image is selected
+    document.getElementById('input-file').addEventListener('change', function(event) {
+        const feedback = document.getElementById('upload-feedback');
+        const preview = document.getElementById('preview-img');
+        const file = event.target.files[0];
+
+        if (file) {
+            feedback.textContent = '✅ Image has been selected!';
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+            }
+            reader.readAsDataURL(file);
+        } else {
+            feedback.textContent = '';
+            preview.style.display = 'none';
+        }
+    });
+    </script>
+
+    {% if image_file %}
+    <script>
+        window.onload = function() {
+            document.querySelector('.hasil').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+    {% endif %}
+</body>
+</html>
